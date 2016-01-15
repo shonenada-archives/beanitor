@@ -1,23 +1,29 @@
-from setuptools import setup, find_packages
+from os.path import dirname, realpath, join
+from setuptooles import setup, find_packages
 
 
-install_required = [l.strip() for l in open("requirements.txt", "r")]
+CURRNET_DIR = dirname(realpath(__file__))
+
+with open(join(CURRNET_DIR, 'README.rst')) as long_desc_file:
+    long_desc = long_desc_file.read()
+
+with open(join(CURRNET_DIR, 'requirements.txt')) as requirements:
+    install_requires = [line.strip() for line in requirements]
 
 
-metadata = {
-    'name': 'beanitor',
-    'version': '0.1',
-    'packages': find_packages(),
-    'author': 'shonenada',
-    'author_email': 'shonenada@gmail.com',
-    'url': "https://github.com/shonenada/beanitor",
-    'zip_safe': True,
-    'platforms': ['all'],
-    'package_data': {"": ['*.html', '*.jpg', '*.png', '*.css', '*.js',
-                     '*.ico', '*.coffee', '*.less', '*.stylus']},
-    'install_requires': install_required,
-    'description': 'A monitor for beanstalkd.'}
-
-
-if __name__ == '__main__':
-    setup(**metadata)
+setup(
+    name="beanitor",
+    version='0.1.0',
+    author='shonenada',
+    author_email='shonenada@gmail.com',
+    url='https://github.com/shonenada/beanitor',
+    zip_safe=True,
+    description='A monitor for beanstalkd.',
+    long_description=long_desc,
+    packages=find_packages(),
+    include_package_data=True,
+    install_requires=install_requires,
+    classifiers=[
+        'Private :: Do Not Upload',
+    ]
+)
