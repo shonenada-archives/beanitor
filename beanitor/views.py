@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+'''
+Beanstalkd Procotol.
+
+https://raw.githubusercontent.com/kr/beanstalkd/master/doc/protocol.txt
+'''
 from flask import Blueprint, render_template
 
 from beanitor.exts import beanstalk
