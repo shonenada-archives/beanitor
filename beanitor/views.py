@@ -4,12 +4,21 @@ Beanstalkd Procotol.
 
 https://raw.githubusercontent.com/kr/beanstalkd/master/doc/protocol.txt
 '''
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for, request
 
 from beanitor.exts import beanstalk
 
 
 bp = Blueprint('master', __name__)
+
+
+def check():
+    if (not request.endpoint == 'master.unavailable' and
+            not beanstalk.is_connected()):
+        return redirect(url_for('master.unavailable'))
+
+
+bp.before_request(check)
 
 
 @bp.route('/')
@@ -21,3 +30,8 @@ def index():
 def stat():
     stats = beanstalk.stats()
     return render_template('stats.html', stats=stats)
+
+
+@bp.route('/unavailable')
+def unavailable():
+    return render_template('unavailable.html')
