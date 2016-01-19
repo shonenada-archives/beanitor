@@ -1,5 +1,5 @@
-from flask import Blueprint
-from beanstalkc import SocketError
+# -*- coding: utf-8 -*-
+from flask import Blueprint, render_template
 
 from beanitor.exts import beanstalk
 
@@ -7,12 +7,12 @@ from beanitor.exts import beanstalk
 bp = Blueprint('master', __name__)
 
 
-@bp.route('')
+@bp.route('/')
 def index():
     return render_template('index.html')
 
 
-@bp.route('/stat')
+@bp.route('/stats')
 def stat():
-    stats = client.stats()
-    return render_template('stats.html', stats)
+    stats = beanstalk.stats()
+    return render_template('stats.html', stats=stats)
