@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{%- for tube in tubes %}
+<div class="tube">
+  <a href="{{ url_for('master.tube', name=tube) }}">{{ tube }}</a>
+</div>
+{%- endfor %}
+{% endblock %}

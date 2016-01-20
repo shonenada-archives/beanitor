@@ -1,0 +1,10 @@
+{%- extends 'base.html' %}
+
+{%- block content %}
+{%- for key, value in tube %}
+<div class="tube-data">
+  <span class="tube-key">{{ key }}: </span>
+  <span calss="tube-value">{{ value }}</span>
+</div>
+{%- endfor %}
+{%- endblock %}
