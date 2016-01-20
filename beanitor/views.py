@@ -4,7 +4,8 @@ Beanstalkd Procotol.
 
 https://raw.githubusercontent.com/kr/beanstalkd/master/doc/protocol.txt
 '''
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, request, abort
+from beanstalkc import CommandFailed
 
 from beanitor.config import CONFIG
 from beanitor.exts import beanstalk
@@ -31,6 +32,22 @@ def index():
 def stats():
     stats = beanstalk.stats()
     return render_template('stats.html', stats=stats)
+
+
+@bp.route('/tubes')
+def tubes():
+    tubes = beanstalk.tubes()
+    return render_template('tubes.html', tubes=tubes)
+
+
+@bp.route('/tubes/<name>')
+def tube(name):
+    try:
+        tube = beanstalk.stats_tube(name).items()
+    except CommandFailed:
+        return abort(404)
+
+    return render_template('tube.html', tube=tube)
 
 
 @bp.route('/unavailable')

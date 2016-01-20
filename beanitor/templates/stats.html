@@ -1,34 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="stats-container">
-  <div class="stats">
-    <span class="label">{{ _('current-connections') }}: </span>
-    <span class="value">{{ stats['current-connections'] }}</span>
-  </div>
-  <div class="stats">
-    <span class="label">{{ _('total-jobs') }}: </span>
-    <span class="value">{{ stats['total-jobs'] }}</span>
-  </div>
-  <div class="stats">
-    <span class="label">{{ _('max-job-size')}}: </span>
-    <span class="value">{{ stats['max-job-size'] }}</span>
-  </div>
-  <div class="stats">
-    <span class="label">{{ _('current-jobs-urgent') }}: </span>
-    <span class="value">{{ stats['current-jobs-urgent'] }}</span>
-  </div>
-  <div class="stats">
-    <span class="label">{{ _('current-jobs-ready') }}: </span>
-    <span class="value">{{ stats['current-jobs-ready'] }}</span>
-  </div>
-  <div class="stats">
-    <span class="label">{{ _('current-jobs-reserved') }}: </span>
-    <span class="value">{{ stats['current-jobs-reserved'] }}</span>
-  </div>
-  <div class="stats">
-    <span class="label">{{ _('current-jobs-delayed') }}: </span>
-    <span class="value">{{ stats['current-jobs-delayed'] }}</span>
-  </div>
+<div class="stats">
+  <span class="label">{{ _('current-connections') }}: </span>
+  <span class="value">{{ stats['current-connections'] }}</span>
+</div>
+<div class="stats">
+  <span class="label">{{ _('total-jobs') }}: </span>
+  <span class="value">{{ stats['total-jobs'] }}</span>
+</div>
+<div class="stats">
+  <span class="label">{{ _('max-job-size')}}: </span>
+  <span class="value">{{ stats['max-job-size'] }}</span>
+</div>
+<div class="stats">
+  <span class="label">{{ _('current-jobs-urgent') }}: </span>
+  <span class="value">{{ stats['current-jobs-urgent'] }}</span>
+</div>
+<div class="stats">
+  <span class="label">{{ _('current-jobs-ready') }}: </span>
+  <span class="value">{{ stats['current-jobs-ready'] }}</span>
+</div>
+<div class="stats">
+  <span class="label">{{ _('current-jobs-reserved') }}: </span>
+  <span class="value">{{ stats['current-jobs-reserved'] }}</span>
+</div>
+<div class="stats">
+  <span class="label">{{ _('current-jobs-delayed') }}: </span>
+  <span class="value">{{ stats['current-jobs-delayed'] }}</span>
+</div>
+<div class="stats">
+  <span class="label">{{ _('uptime') }}: </span>
+  <span class="value">{{ stats['uptime'] }} ({{ stats['uptime'] | humanable_time }})</span>
+</div>
+<div class="stats">
+  <span class="label">{{ _('job-timeouts') }}: </span>
+  <span class="value">{{ stats['job-timeouts'] }}</span>
 </div>
 {% endblock %}
