@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-import os
-
 from flask import Flask
 from beanitor.exts import beanstalk
 
+from beanitor.config import CONFIG
 from beanitor.views import bp
 
 
 def create_app(name=None):
     app = Flask(name or __name__)
 
-    app.debug = bool(int(os.environ.get('DEBUG', False)))
+    app.config.update(CONFIG)
 
     beanstalk.init_app(app)
 
