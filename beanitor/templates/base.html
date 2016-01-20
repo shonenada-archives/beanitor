@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Beanitor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='components/normalize.css/normalize.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}" type="text/css" />
+    {% block styles %}{% endblock %}
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <h1>Beanitor</h1>
+        <div class="pull-right nav">
+        </div>
+      </div>
+
+      <div class="main">
+        {% block main %}
+        <div class="pull-left menu">
+          <ul class="nav">
+            <li><a href="{{ url_for('master.index') }}">{{ _('Home') }}</a></li>
+            <li><a href="{{ url_for('master.stats') }}">{{ _('Stats') }}</a></li>
+          </ul>
+        </div>
+        <div class="content">
+          <h2 class="title">{%- block title %}{%- endblock %}</h2>
+          {%- block content %}{%- endblock %}
+        </div>
+        {% endblock %}
+      </div>
+
+      <div class="footer">
+        Beanitor &copy; 2015
+      </div>
+    </div>
+  {%- block scripts %}{%- endblock %}
+  </body>
+</html>
