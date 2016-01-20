@@ -6,6 +6,7 @@ https://raw.githubusercontent.com/kr/beanstalkd/master/doc/protocol.txt
 '''
 from flask import Blueprint, render_template, redirect, url_for, request
 
+from beanitor.config import CONFIG
 from beanitor.exts import beanstalk
 
 
@@ -27,11 +28,12 @@ def index():
 
 
 @bp.route('/stats')
-def stat():
+def stats():
     stats = beanstalk.stats()
     return render_template('stats.html', stats=stats)
 
 
 @bp.route('/unavailable')
 def unavailable():
-    return render_template('unavailable.html')
+    return 'Cannot connect to %s:%s' % (CONFIG.BEANSTALK_HOST,
+                                        CONFIG.BEANSTALK_PORT)
